@@ -1,5 +1,7 @@
 import Data.List
 
+-- COMPLETE
+
 histogram :: Int -> [Int] -> [Int]
 histogram n xs
   | xs == [] = []
