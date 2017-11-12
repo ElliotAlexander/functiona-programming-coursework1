@@ -1,5 +1,7 @@
 import Data.List
 
+-- COMPLETE
+
 subtotal :: Num a => [a] -> [a]
 subtotal [] = []
 subtotal (x:[]) = [x]
