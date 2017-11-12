@@ -1,5 +1,7 @@
+import Data.List
+
 histogram :: Int -> [Int] -> [Int]
-histogram n (x:xs)
-  | x:xs == [] = []
-  | x < n-1 = [1] ++ histogram n xs
-  | otherwise = histogram (2*n) xs
+histogram n xs
+  | xs == [] = []
+  | otherwise = [length y] ++ histogram (2*n) (xs \\ y)
+  where y =  [x | x <- xs, x <= n-1]
