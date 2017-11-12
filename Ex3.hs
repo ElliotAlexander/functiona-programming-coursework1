@@ -1,3 +1,5 @@
+-- COMPLETE
+
 meetsOffer :: String -> Int -> Bool
 meetsOffer s i
   | (meetsOffer' s) > i = True
