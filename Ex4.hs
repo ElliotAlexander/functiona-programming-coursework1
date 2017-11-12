@@ -1,11 +1,17 @@
 import Data.List
 
-sortType :: Num a => [a] -> String
-sortType a
-  | strictlyIncreasing a = "Testing"
+sortType :: Eq a => Ord a => Num a => [a] -> String
+sortType xs
+  | xs == [] = "Constant"
+  | check_duplicates xs = "Constant"
+  | sort xs == xs = "Ascending"
+  | reverse (sort xs) == xs = "Descending"
+  | otherwise = "Error!"
 
 
-strictlyIncreasing :: Num a => [a] -> Bool
-strictlyIncreasing (x:y:xs)
+-- we know XS isn't empty from the above checks.
+check_duplicates :: Eq a => Num a => [a] -> Bool
+check_duplicates (x:xs)
   | xs == [] = True
---  | x < y = (strictlyIncreasing ([y] ++ xs))
+  | x == head xs = check_duplicates xs
+  | otherwise = False
