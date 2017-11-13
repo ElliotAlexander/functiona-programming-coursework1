@@ -1,14 +1,17 @@
 import Data.List
 
-data TypeOfSort = Ascending | NonDescending | Constant | NonAscending | Descending | NotSorted deriving Show
+-- Mostly working, needs some better testing. 
 
+data TypeOfSort = Ascending | NonDescending | Constant | NonAscending | Descending | NotSorted deriving Show
 sortType :: Ord a => [a] -> TypeOfSort
 sortType xs
   | xs == [] = Ascending
-  | length no_dup == length xs = Ascending
+  | length minusdups == 1 = NonAscending
+  | sort xs == xs && dup == True = Ascending
+  | reverse (sort xs) == xs && dup == True = Descending
+  | sort xs == xs = NonDescending
+  | reverse (sort xs) == xs = NonAscending
+  | otherwise = NotSorted
   where 
-    no_dup = map head (group(sort xs))
-
-    -- True it no dups
-no_dup_check :: Ord a => [a] -> Bool
-no_dup_check xs = length (map head (group(sort xs))) == length xs
+    minusdups = map head (group(sort xs))
+    dup = length minusdups == length xs
