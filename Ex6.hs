@@ -1,8 +1,8 @@
 
 neighbours :: (Floating a, Ord a) => Int -> (a,a) -> [(a,a)] -> [(a,a)]
-neighbours k (p,q) x:xs
+neighbours k (p,q) (x,y):xs
     | xs == [] = []
-    | otherwise = compare_coords (x,y) (c,d) ++ neighbours (x,y) xs
+    | otherwise = compare_coords (p,q) (x,y) ++ neighbours k (p,q) xs
 
 
     -- Distance from K -> P
