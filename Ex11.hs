@@ -1,6 +1,8 @@
 import Data.Char
 import Data.List
 
+-- WORKING
+
 decode :: [Int] -> String
 decode xs
     | xs == [] = []
