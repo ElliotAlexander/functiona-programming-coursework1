@@ -1,7 +1,8 @@
 import Data.Char
 import Data.List
 
--- WORKING
+-- Complete?
+
 
 decode :: [Int] -> String
 decode xs
