@@ -20,7 +20,7 @@ output :: [Int] -> [Int]
 output (x:xs)
     | x == 0 = []
     | xs == [] = y
-    | otherwise = y ++ [1] ++ output xs
+    | otherwise = y ++ [checkparity y] ++ output xs
     where
         y = bitwiseor (reverse(tobinary x))
 
@@ -31,3 +31,8 @@ bitwiseor xs
     where
         ms = 8 - length xs
         addstring = take ms (repeat 0)
+
+checkparity :: [Int] -> Int
+checkparity xs
+    | (length [ x | x <- xs, x == 1]) `mod` 2 == 0 = 1
+    | otherwise = 0
