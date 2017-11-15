@@ -1,20 +1,24 @@
 import Data.Char
 import Data.List
 
-rpcalc :: String -> String
-rpcalc (x:xs) 
+rpcalc :: String -> Int
+rpcalc xs
     | xs == [] = 0
-    | x:xs==[]= 0
-    | otherwise = rpcalc (( xs \\ ([a] ++ [b] ++ [nextoperator])) ++ nextval)
+    | otherwise = rpcalc' ints symbols
     where
-        ints = [ x | x <- xs, isDigit x]
-        symbols = [ x | x <- xs, isDigit x == False]
-        nextoperator = last symbols
-        a = last ints
-        b = last ints 
-        nextval = calc (read [a]) (read [b]) nextoperator
+        ints = reverse [digitToInt x | x <- xs, isDigit x]
+        symbols = reverse [ x | x <- xs, isDigit x == False]
 
-calc :: Integral a => Num a => a -> a -> Char -> a
+rpcalc' :: [Int] -> String -> Int
+rpcalc' ints symbols
+    | symbols == [] = 0
+    | ints == [] = 0
+    | otherwise = rpcalc' ((drop 2 ints) ++ [calc a b (head symbols)]) (drop 1 symbols)
+    where 
+        a = ints !! 0
+        b = ints !! 1
+
+calc :: Int -> Int -> Char -> Int
 calc a b operator
     | operator == '+' = a + b
     | operator == '-' = a - b
