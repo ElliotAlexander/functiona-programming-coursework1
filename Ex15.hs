@@ -1,12 +1,12 @@
 --isCantorPair
+-- Working
 
 isCantorPair :: Int -> Bool
-isCantorPair p
-    | new == p = True
-    | otherwise = False
-    where  
+isCantorPair p = tail pair == [(sum xypair)]
+    where 
         pair = cantorReverse p
-        new = cantorFunction (pair !! 0) (pair !! 1)
+        xypair = cantorReverse (head pair)
+    
 
 cantorFunction :: Int -> Int -> Int
 cantorFunction x y
@@ -21,5 +21,3 @@ cantorReverse z
         t = floor (((sqrt (8 * (fromIntegral z) + 1)) - 1) / 2)
         a = (t * (t + 3)) `div` 2 - z
         b = z - ((t * (t + 1)) `div` 2)
-
-    
