@@ -1,22 +1,19 @@
 import Data.Char
 import Data.List
 
-rpcalc :: String -> Int
-rpcalc xs
-    | xs == [] = 0
-    | otherwise = rpcalc' ints symbols
+rpcalc'' :: String -> Int
+rpcalc'' xs
+    | otherwise = rpcalc''' ints symbols 
     where
-        ints = reverse [digitToInt x | x <- xs, isDigit x]
-        symbols = reverse [ x | x <- xs, isDigit x == False]
+        ints = [digitToInt x | x <- xs, isDigit x]
+        symbols = [ x | x <- xs, isDigit x == False]
 
-rpcalc' :: [Int] -> String -> Int
-rpcalc' ints symbols
-    | symbols == [] = 0
-    | ints == [] = 0
-    | otherwise = rpcalc' ((drop 2 ints) ++ [calc a b (head symbols)]) (drop 1 symbols)
-    where 
-        a = ints !! 0
-        b = ints !! 1
+rpcalc''' :: [Int] -> [Char] -> Int
+rpcalc''' ints symbols 
+    | length ints == 1 = head ints
+    | otherwise = rpcalc''' ([result]++(drop 2 ints)) (drop 1 symbols)
+    where
+        result = calc (ints !! 0) (ints !! 1) (head symbols)
 
 calc :: Int -> Int -> Char -> Int
 calc a b operator
