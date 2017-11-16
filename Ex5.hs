@@ -1,6 +1,8 @@
 import Data.Char
 import Data.List
 
+-- Pretty sure this works to some degree, rounding is weird when dividing
+
 rpcalc :: String -> Int
 rpcalc xs
     | otherwise = rpcalc''' ints symbols 
