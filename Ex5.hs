@@ -5,7 +5,7 @@ import Data.List
 
 rpcalc :: String -> Int
 rpcalc xs
-    | otherwise = rpcalc''' ints symbols 
+    | otherwise = rpcalc' ints symbols 
     where
         ints = [digitToInt x | x <- xs, isDigit x]
         symbols = [ x | x <- xs, isDigit x == False]
@@ -13,7 +13,7 @@ rpcalc xs
 rpcalc' :: [Int] -> [Char] -> Int
 rpcalc' ints symbols 
     | length ints == 1 = head ints
-    | otherwise = rpcalc''' ([result]++(drop 2 ints)) (drop 1 symbols)
+    | otherwise = rpcalc' ([result]++(drop 2 ints)) (drop 1 symbols)
     where
         result = calc (ints !! 0) (ints !! 1) (head symbols)
 
