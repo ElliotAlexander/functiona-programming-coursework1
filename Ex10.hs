@@ -36,3 +36,4 @@ checkparity :: [Int] -> Int
 checkparity xs
     | (length [ x | x <- xs, x == 1]) `mod` 2 == 0 = 1
     | otherwise = 0
+

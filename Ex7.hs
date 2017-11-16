@@ -1,11 +1,16 @@
 data SearchTree = Node SearchTree Int SearchTree | Leaf Int deriving Show
 
---balanced :: SearchTree -> Boolean
---balanced tree
+--balanced :: SearchTree -> Int -> Boolean
+--balanced tree current_depth
+--    | isNode tree == True = 
+--    | otherwise = 
 
 
+checknode :: SearchTree -> Int -> Bool
+checknode (Node _ _ _) tree x = False
+checknode (Leaf _) leaf x = True
 
 
--- Recursively find depth of subtree
-checknode :: SearchTree -> Int -> Int 
-checknode (Node l _ _ _) n = 0 
+isNode :: SearchTree -> Bool
+isNode (Node _ _ _ ) = True
+isNode _ = False
